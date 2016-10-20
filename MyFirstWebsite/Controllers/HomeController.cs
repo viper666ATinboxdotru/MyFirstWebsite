@@ -9,9 +9,16 @@ namespace MyFirstWebsite.Controllers
     public class HomeController : Controller
     {
         // GET: Home
+        [HttpGet]
         public ActionResult Index()
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult Index(int x = 1)
+        {
+            return View();
+        }
+
     }
 }

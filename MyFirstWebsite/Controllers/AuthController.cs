@@ -33,16 +33,18 @@ namespace MyFirstWebsite.Controllers
             {
                 var identity = new ClaimsIdentity(new[]
                 {
-                    new Claim(ClaimTypes.Name, "Xtian"),
-                    new Claim(ClaimTypes.Email, "xtian@email.com"),
-                    new Claim(ClaimTypes.Country, "Philippines")
+                    new Claim(ClaimTypes.Name, "Alexey"),
+                    new Claim(ClaimTypes.Email, "alexey@email.com"),
+                    new Claim(ClaimTypes.Country, "Belarus")
 
-                }, "ApplicationCoockie");
+                }, "ApplicationCookie");
                 var ctx = Request.GetOwinContext();
                 var authManager = ctx.Authentication;
                 authManager.SignIn(identity);
 
-                return Redirect(GetRedirectUrl(model.ReturnUrl));
+                var redir = Redirect(GetRedirectUrl(model.ReturnUrl));
+                return redir;
+                //return Redirect(Url.Action("Index", "Home"));
             }
             ModelState.AddModelError("", "Invalid email or password");
             return View(model);
@@ -52,7 +54,8 @@ namespace MyFirstWebsite.Controllers
         {
             if (string.IsNullOrEmpty(returnUrl) || !Url.IsLocalUrl(returnUrl))
             {
-                return Url.Action("index", "home");
+                 var urlact = Url.Action("Index", "Home");
+                return urlact;
             }
             return returnUrl;
         }
