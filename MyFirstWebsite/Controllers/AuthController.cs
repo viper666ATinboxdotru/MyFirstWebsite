@@ -37,12 +37,14 @@ namespace MyFirstWebsite.Controllers
                     new Claim(ClaimTypes.Email, "xtian@email.com"),
                     new Claim(ClaimTypes.Country, "Philippines")
 
-                }, "ApplicationCoockie");
+                }, "ApplicationCookie");
                 var ctx = Request.GetOwinContext();
                 var authManager = ctx.Authentication;
                 authManager.SignIn(identity);
 
-                return Redirect(GetRedirectUrl(model.ReturnUrl));
+                var redir = Redirect(GetRedirectUrl(model.ReturnUrl));
+                //return Redirect(GetRedirectUrl(model.ReturnUrl));
+                return redir;
             }
             ModelState.AddModelError("", "Invalid email or password");
             return View(model);
@@ -50,11 +52,22 @@ namespace MyFirstWebsite.Controllers
 
         private string GetRedirectUrl(string returnUrl)
         {
-            if (string.IsNullOrEmpty(returnUrl) || !Url.IsLocalUrl(returnUrl))
+            if (string.IsNullOrEmpty(returnUrl) || !Url.IsLocalUrl(returnUrl))            
             {
-                return Url.Action("index", "home");
+                string res = Url.Action("index", "home");
+                //return Url.Action("index", "home");
+                return res;
             }
             return returnUrl;
+        }
+
+        public ActionResult Logout()
+        {
+            var ctx = Request.GetOwinContext();
+            var authManager = ctx.Authentication;
+
+            authManager.SignOut("ApplicationCookie");
+            return RedirectToAction("Login", "Auth");
         }
 
     }
