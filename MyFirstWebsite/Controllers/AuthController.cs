@@ -13,16 +13,12 @@ namespace MyFirstWebsite.Controllers
     {
         // GET: Auth
         [HttpGet]
-        public ActionResult Login(string returnUrl)
+        public ActionResult Login()
         {
-            var model = new LoginModel
-            {
-                ReturnUrl = returnUrl
-            };
-            return View(model);
+            return View();
         }
         [HttpPost]
-        public ActionResult Login(LoginModel model)
+        public ActionResult Login(Users model)
         {
             if (!ModelState.IsValid)//checks if the input fields have correct format
             {
@@ -42,27 +38,13 @@ namespace MyFirstWebsite.Controllers
                 var authManager = ctx.Authentication;
                 authManager.SignIn(identity);
 
-                var redir = Redirect(GetRedirectUrl(model.ReturnUrl));
-                //return Redirect(GetRedirectUrl(model.ReturnUrl));
-                return redir;
-                //return Redirect(Url.Action("Index", "Home"));
+                return RedirectToAction("Index", "Home");
 
             }
             ModelState.AddModelError("", "Invalid email or password");
             return View(model);
         }
 
-        private string GetRedirectUrl(string returnUrl)
-        {
-            if (string.IsNullOrEmpty(returnUrl) || !Url.IsLocalUrl(returnUrl))            
-            {
-
-                string res = Url.Action("index", "home");
-                //return Url.Action("index", "home");
-                return res;
-            }
-            return returnUrl;
-        }
 
         public ActionResult Logout()
         {

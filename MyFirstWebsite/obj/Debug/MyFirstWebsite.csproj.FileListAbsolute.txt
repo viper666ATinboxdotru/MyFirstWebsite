@@ -108,3 +108,7 @@ C:\Projects\MyFirstWebsite\MyFirstWebsite\bin\System.Web.Mvc.xml
 C:\Projects\MyFirstWebsite\MyFirstWebsite\obj\Debug\MyFirstWebsite.csprojResolveAssemblyReference.cache
 C:\Projects\MyFirstWebsite\MyFirstWebsite\obj\Debug\MyFirstWebsite.dll
 C:\Projects\MyFirstWebsite\MyFirstWebsite\obj\Debug\MyFirstWebsite.pdb
+C:\Projects\MyFirstWebsite\MyFirstWebsite\bin\EntityFramework.dll
+C:\Projects\MyFirstWebsite\MyFirstWebsite\bin\EntityFramework.SqlServer.dll
+C:\Projects\MyFirstWebsite\MyFirstWebsite\bin\EntityFramework.xml
+C:\Projects\MyFirstWebsite\MyFirstWebsite\bin\EntityFramework.SqlServer.xml
