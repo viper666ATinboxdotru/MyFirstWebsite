@@ -43,8 +43,10 @@ namespace MyFirstWebsite.Controllers
                 authManager.SignIn(identity);
 
                 var redir = Redirect(GetRedirectUrl(model.ReturnUrl));
+                //return Redirect(GetRedirectUrl(model.ReturnUrl));
                 return redir;
                 //return Redirect(Url.Action("Index", "Home"));
+
             }
             ModelState.AddModelError("", "Invalid email or password");
             return View(model);
@@ -52,10 +54,12 @@ namespace MyFirstWebsite.Controllers
 
         private string GetRedirectUrl(string returnUrl)
         {
-            if (string.IsNullOrEmpty(returnUrl) || !Url.IsLocalUrl(returnUrl))
+            if (string.IsNullOrEmpty(returnUrl) || !Url.IsLocalUrl(returnUrl))            
             {
-                 var urlact = Url.Action("Index", "Home");
-                return urlact;
+
+                string res = Url.Action("index", "home");
+                //return Url.Action("index", "home");
+                return res;
             }
             return returnUrl;
         }
