@@ -19,7 +19,8 @@ namespace MyFirstWebsite.Models
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-
+        
+        [Display(Name = "Имя")]
         public string Name { get; set; }
 
         public string Country { get; set; }
