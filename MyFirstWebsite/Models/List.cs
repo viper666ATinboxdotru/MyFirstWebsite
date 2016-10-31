@@ -7,7 +7,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MyFirstWebsite.Models
 {
-    public class List
+    //public class List
+    public class Lists
     {
         [Key]
         public int Id { get; set; }

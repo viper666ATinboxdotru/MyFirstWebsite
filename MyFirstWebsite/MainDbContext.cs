@@ -15,8 +15,16 @@ namespace MyFirstWebsite
         {
         }
 
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    base.OnModelCreating(modelBuilder);
+
+        //    //modelBuilder.Entity<Item>().ToTable("Item");
+        //    modelBuilder.Entity<Lists>().ToTable("List");
+
+        //}
         public DbSet<Users> Users { get; set; }
 
-        public DbSet<List> List { get; set; }
+        public DbSet<Lists> Lists { get; set; }
     }
 }
