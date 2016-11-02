@@ -12,7 +12,7 @@ namespace MyFirstWebsite.Models
     {
         [Key]
         public int Id { get; set; }
-        [Required]
+        //[Required]
         public string Details { get; set; }
 
         public string Date_Posted { get; set; }
