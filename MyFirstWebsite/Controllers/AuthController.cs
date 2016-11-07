@@ -18,6 +18,15 @@ namespace MyFirstWebsite.Controllers
         {
             return View();
         }
+
+        // GET: Home
+        [HttpGet]
+        public ActionResult Index()
+        {
+            MainDbContext db = new MainDbContext();
+            return View(db.Lists.Where(x => x.Public == "YES").ToList());
+        }
+
         [HttpPost]
         public ActionResult Login(Users model)
         {
@@ -102,15 +111,23 @@ namespace MyFirstWebsite.Controllers
             {
                 using (var db = new MainDbContext())
                 {
-                    var encryptedPassword = CustomEncrypt.Encrypt(model.Password);
-                    var user = db.Users.Create();
-                    user.Email = model.Email;
-                    user.Password = encryptedPassword;
-                    user.Country = model.Country;
-                    user.Name = model.Name;
+                    var queryUser = db.Users.FirstOrDefault(u => u.Email == model.Email);
+                    if (queryUser == null)
+                    {
+                        var encryptedPassword = CustomEncrypt.Encrypt(model.Password);
+                        var user = db.Users.Create();
+                        user.Email = model.Email;
+                        user.Password = encryptedPassword;
+                        user.Country = model.Country;
+                        user.Name = model.Name;
 
-                    db.Users.Add(user);
-                    db.SaveChanges();
+                        db.Users.Add(user);
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        return RedirectToAction("Registration");
+                    }
                 }
             }
             else
